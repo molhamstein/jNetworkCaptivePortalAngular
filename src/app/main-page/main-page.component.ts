@@ -336,19 +336,17 @@ export class MainPageComponent {
         this.route.params.subscribe(params => {
             let code= params['code'];
             let userId=params['userId'];
-            if(code){
-                console.log(code);
-                console.log(userId);                
-                // this.mainServ.API.get("clients/confirm?uid="+userId+"&token="+code).subscribe((data: any) => {
-                // if (this.mainServ.API.getErrorCode() == 0) {
-                //     this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
-                //     this.user = {};
-                // } else {
-                //     // if (this.mainServ.API.getErrorCode() == 401) {
-                //     this.mainServ.global.somthingError("تاكيد الحساب");
-                // }
+            if(code){             
+                this.mainServ.API.get("clients/confirm?mobile="+userId+"&code="+code).subscribe((data: any) => {
+                if (this.mainServ.API.getErrorCode() == 0) {
+                    this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
+                    this.user = {};
+                } else {
+                    // if (this.mainServ.API.getErrorCode() == 401) {
+                    this.mainServ.global.somthingError("تاكيد الحساب");
+                }
 
-                // });    
+                });    
             }
         });
     }
