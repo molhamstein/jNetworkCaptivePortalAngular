@@ -556,7 +556,7 @@ var MainPageComponent = /** @class */ (function () {
             var code = params['code'];
             var userId = params['userId'];
             if (code) {
-                _this.mainServ.API.get("clients/confirm?mobile=" + userId + "&code=" + code).subscribe(function (data) {
+                _this.mainServ.API.get("clients/confirm2?mobile=" + userId + "&code=" + code).subscribe(function (data) {
                     if (_this.mainServ.API.getErrorCode() == 0) {
                         _this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
                         _this.user = {};

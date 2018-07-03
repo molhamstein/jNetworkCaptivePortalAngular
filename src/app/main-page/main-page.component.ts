@@ -337,7 +337,7 @@ export class MainPageComponent {
             let code= params['code'];
             let userId=params['userId'];
             if(code){             
-                this.mainServ.API.get("clients/confirm?mobile="+userId+"&code="+code).subscribe((data: any) => {
+                this.mainServ.API.get("clients/confirm2?mobile="+userId+"&code="+code).subscribe((data: any) => {
                 if (this.mainServ.API.getErrorCode() == 0) {
                     this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
                     this.user = {};
