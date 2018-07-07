@@ -369,21 +369,23 @@ export class MainPageComponent {
         // })(jQuery);
 
     }
-
+    params = {};
     constructor(public mainServ: MainServiceService, private route: ActivatedRoute) {
         this.user['birthdate'] = { date: { year: 2018, month: 10, day: 9 } };
         this.route.queryParams
             .subscribe(params => {
+                this.params = params
                 if (params['mac'] != null) {
                     console.log("Params")
                     this.mainServ.global.setParams(params);
                 }
                 else {
                     console.log("no Params")
+                    this.params = this.mainServ.global.getParams();
+
                 }
 
             });
-
     }
 
     signUp() {
@@ -438,26 +440,26 @@ export class MainPageComponent {
     gotToLink() {
         let params = this.mainServ.global.getParams();
         let link = params['link-login-only'];
-        link += "?mac="+params['mac']+
-        "&" + "ip="+params['ip']+
-        "&"+"username="+params['username']+
-        "&"+"link-login="+params['link-login']+
-        "&"+"link-orig="+params['link-orig']+
-        "&"+"error="+params['error']+
-        "&"+"trial="+params['trial']+
-        "&"+"login-by="+params['login-by']+
-        "&"+"chap-id="+params['chap-id']+
-        "&"+"chap-challenge="+params['chap-challenge']+
-        "&"+"link-login-only="+params['link-login-only']+
-        "&"+"link-orig-esc="+params['link-orig-esc']+
-        "&"+"mac-esc="+params['mac-esc']+
-        "&"+"identity="+params['identity']+
-        "&"+"bytes-in-nice="+params['bytes-in-nice']+
-        "&"+"bytes-out-nice="+params['bytes-out-nice']+
-        "&"+"session-time-left="+params['session-time-left']+
-        "&"+"uptime="+params['uptime']+
-        "&"+"refresh-timeout="+params['refresh-timeout']+
-        "&"+"link-status="+params['link-status'];
+        link += "?mac=" + params['mac'] +
+            "&" + "ip=" + params['ip'] +
+            "&" + "username=" + params['username'] +
+            "&" + "link-login=" + params['link-login'] +
+            "&" + "link-orig=" + params['link-orig'] +
+            "&" + "error=" + params['error'] +
+            "&" + "trial=" + params['trial'] +
+            "&" + "login-by=" + params['login-by'] +
+            "&" + "chap-id=" + params['chap-id'] +
+            "&" + "chap-challenge=" + params['chap-challenge'] +
+            "&" + "link-login-only=" + params['link-login-only'] +
+            "&" + "link-orig-esc=" + params['link-orig-esc'] +
+            "&" + "mac-esc=" + params['mac-esc'] +
+            "&" + "identity=" + params['identity'] +
+            "&" + "bytes-in-nice=" + params['bytes-in-nice'] +
+            "&" + "bytes-out-nice=" + params['bytes-out-nice'] +
+            "&" + "session-time-left=" + params['session-time-left'] +
+            "&" + "uptime=" + params['uptime'] +
+            "&" + "refresh-timeout=" + params['refresh-timeout'] +
+            "&" + "link-status=" + params['link-status'];
         this.mainServ.global.goTo(link, false);
     }
 }
