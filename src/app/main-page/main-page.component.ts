@@ -460,6 +460,7 @@ export class MainPageComponent {
             "&" + "uptime=" + params['uptime'] +
             "&" + "refresh-timeout=" + params['refresh-timeout'] +
             "&" + "link-status=" + params['link-status'];
+
         this.mainServ.global.goTo(link, false);
     }
 }
