@@ -386,7 +386,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"], mydatepicker__WEBPACK_IMPORTED_MODULE_16__["MyDatePickerModule"], ngx_mydatepicker__WEBPACK_IMPORTED_MODULE_15__["NgxMyDatePickerModule"].forRoot(),
-                _angular_router__WEBPACK_IMPORTED_MODULE_12__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_11__["routes"], { useHash: false })
+                _angular_router__WEBPACK_IMPORTED_MODULE_12__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_11__["routes"])
                 // material
                 ,
                 _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MatDialogModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_19__["BrowserAnimationsModule"]

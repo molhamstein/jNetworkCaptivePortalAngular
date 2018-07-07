@@ -31,7 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MyDatePickerModule, NgxMyDatePickerModule.forRoot(),
-    RouterModule.forRoot(routes, { useHash: false })
+    RouterModule.forRoot(routes)
       // material
     ,MatDialogModule , BrowserAnimationsModule ],
   providers: [MainServiceService, LogInServiceService, CallAPIService],
