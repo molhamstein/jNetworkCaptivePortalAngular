@@ -164,7 +164,17 @@ export class ResetPasswordComponent {
                 $(thisAlert).find('.btn-hide-validate').remove();
             }
 
-
+            $("#mobile-input-reset , #code-input-reset").on('input', function () {
+                if ($('#mobile-input-reset').val() == "" || $('#mobile-input-reset').val() == null || $('#code-input-reset').val() == "" || $('#code-input-reset').val() == null) {
+                    if ($('.newPassword').is(":hidden") == false) {
+                        $('.newPassword').hide();
+                    }
+                } else {
+                    if ($('.newPassword').is(":hidden") == true) {
+                        $('.newPassword').show();
+                    }
+                }
+            });
 
         })(jQuery);
 

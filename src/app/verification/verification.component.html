@@ -1,4 +1,5 @@
 <!--component html goes here -->
+<!--component html goes here -->
 <!--<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 	<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 		<form id="login100-form" class="login100-form validate-form">
@@ -110,19 +111,15 @@
 				<input id="mobile-input-reset" class="input100" type="text" name="code-v" [(ngModel)]="code.mobile" placeholder="رقم الهاتف">
 				<span class="focus-input100"></span>
 			</div>
-			<div class="newPassword">
-				<span class="forget100-form-title p-b-37">
-					يرجى إدخال كلمة المرور الجديدة
-				</span>
-				<div class="wrap-input100 validate-input m-b-20" data-validate="يرجى إدخال كلمة المرور">
-					<input class="input100" type="password" name="newPassword-r" [(ngModel)]="newPassword.newpasword" placeholder="كلمة المرور الجديد">
-					<span class="focus-input100"></span>
-				</div>
-			</div>
 			<div class="container-verify100-form-btn">
 				<button id="reset100-form-show" class="verify100-form-btn">
-					تحديث
+					تاكيد
 				</button>
+			</div>
+			<div class="text-center p-t-20 p-b-20" style="padding: 10px;padding-bottom: 0px">
+				<span class="txt1">
+						<a id="forget100-form-show" routerLink="{{'/login'}}">صفحة تسجيل الدخول </a>
+					</span>
 			</div>
 		</form>
 		<!--<form id="reset100-form" class="reset100-form validate-form ">

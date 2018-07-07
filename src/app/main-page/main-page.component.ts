@@ -71,6 +71,8 @@ export class MainPageComponent {
             $('#date').hide();
             $("#signup-form-btn").click(function (evt) {
                 evt.preventDefault();
+                $('#signup100-form').removeClass('animated fadeOutUp');
+                $('#login100-form').removeClass('animated fadeInDown');;
                 $('#login100-form').addClass('animated fadeOutDown');
                 setTimeout(function () {
                     $('#login100-form').hide();
@@ -82,10 +84,27 @@ export class MainPageComponent {
             });
 
 
+            $("#signin-form-btn").click(function (evt) {
+                evt.preventDefault();
+                $('#signup100-form').removeClass('animated fadeInUp');;
+                $('#login100-form').removeClass('animated fadeOutDown');
+                $('#signup100-form').addClass('animated fadeOutUp');
+                setTimeout(function () {
+                    $('#signup100-form').hide();
+                    $('#login100-form').show();
+                    $('#login100-form').addClass('animated fadeInDown');;
+                }, 500);
+                $('#birth-s').val('');
+
+            });
+
+
             /*==================================================================
             [ Hide Login Form And Show forget Form ]*/
             $("#forget100-form-show").click(function (evt) {
                 evt.preventDefault();
+                $('#forget100-form').removeClass('animated fadeOutRight');
+                $('#login100-form').removeClass('animated fadeInLeft');;
                 $('#login100-form').addClass('animated fadeOutLeft');
 
                 setTimeout(function () {
@@ -95,17 +114,37 @@ export class MainPageComponent {
                 }, 500);
 
             });
-            /*==================================================================
-            [ Hide Forget Form And Show verify Form ]*/
-            $("#verify100-form-show").click(function (evt) {
+
+            $("#back-to-login").click(function (evt) {
                 evt.preventDefault();
-                $('#forget100-form').addClass('animated fadeOutLeft');
+                $('#login100-form').removeClass('animated fadeOutLeft');
+                $('#forget100-form').removeClass('animated fadeInRight');;
+
+                $('#forget100-form').addClass('animated fadeOutRight');
+
                 setTimeout(function () {
                     $('#forget100-form').hide();
-                    $('#verify100-form').show();
-                    $('#verify100-form').addClass('animated fadeInRight');;
+                    $('#login100-form').show();
+                    $('#login100-form').addClass('animated fadeInLeft');;
                 }, 500);
+
             });
+
+
+
+
+
+            /*==================================================================
+            [ Hide Forget Form And Show verify Form ]*/
+            // $("#verify100-form-show").click(function (evt) {
+            //     evt.preventDefault();
+            //     $('#forget100-form').addClass('animated fadeOutLeft');
+            //     setTimeout(function () {
+            //         $('#forget100-form').hide();
+            //         $('#verify100-form').show();
+            //         $('#verify100-form').addClass('animated fadeInRight');;
+            //     }, 500);
+            // });
             /*==================================================================
             [ Hide verify Form And Show reset Form ]*/
             $("#reset100-form-show").click(function (evt) {
@@ -333,22 +372,18 @@ export class MainPageComponent {
 
     constructor(public mainServ: MainServiceService, private route: ActivatedRoute) {
         this.user['birthdate'] = { date: { year: 2018, month: 10, day: 9 } };
-        this.route.params.subscribe(params => {
-            let code= params['code'];
-            let userId=params['userId'];
-            if(code){             
-                this.mainServ.API.get("clients/confirm2?mobile="+userId+"&code="+code).subscribe((data: any) => {
-                if (this.mainServ.API.getErrorCode() == 0) {
-                    this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
-                    this.user = {};
-                } else {
-                    // if (this.mainServ.API.getErrorCode() == 401) {
-                    this.mainServ.global.somthingError("تاكيد الحساب");
+        this.route.queryParams
+            .subscribe(params => {
+                if (params['mac'] != null) {
+                    console.log("Params")
+                    this.mainServ.global.setParams(params);
+                }
+                else {
+                    console.log("no Params")
                 }
 
-                });    
-            }
-        });
+            });
+
     }
 
     signUp() {
@@ -362,8 +397,7 @@ export class MainPageComponent {
 
             this.mainServ.API.post("clients", this.user).subscribe((data: any) => {
                 if (this.mainServ.API.getErrorCode() == 0) {
-                    this.mainServ.global.sampleDialog("إنشاء الحساب", "تم إنشاء الحساب بنجاح");
-                    this.user = {};
+                    this.mainServ.global.goTo('verification/')
                 } else {
                     // if (this.mainServ.API.getErrorCode() == 401) {
                     this.mainServ.global.somthingError("إنشاء الحساب");
@@ -375,8 +409,7 @@ export class MainPageComponent {
     resetPassword() {
         this.mainServ.API.post("clients/reset", this.reset).subscribe((data: any) => {
             if (this.mainServ.API.getErrorCode() == 0) {
-                this.mainServ.global.sampleDialog("تسجيل الدخول", "تم تسجيل الدخول بنجاح");
-                this.loginUser = {};
+                this.mainServ.global.goTo("reset/")
             } else {
                 // if (this.mainServ.API.getErrorCode() == 401) {
                 this.mainServ.global.somthingError("تسجيل الدخول");
@@ -387,12 +420,44 @@ export class MainPageComponent {
     signIn() {
         this.mainServ.API.post("clients/login?include=user", this.loginUser).subscribe((data: any) => {
             if (this.mainServ.API.getErrorCode() == 0) {
-                this.mainServ.global.sampleDialog("تسجيل الدخول", "تم تسجيل الدخول بنجاح");
-                this.loginUser = {};
+                $('#login100-form').addClass('animated fadeOut');
+
+                setTimeout(function () {
+                    $('#login100-form').hide();
+                    $('#successLogin-form').show();
+                    $('#successLogin-form').addClass('animated fadeIn');;
+                }, 500);
+
             } else {
                 // if (this.mainServ.API.getErrorCode() == 401) {
                 this.mainServ.global.somthingError("تسجيل الدخول");
             }
         });
+    }
+
+    gotToLink() {
+        let params = this.mainServ.global.getParams();
+        let link = params['link-login-only'];
+        link += "?mac="+params['mac']+
+        "&" + "ip="+params['ip']+
+        "&"+"username="+params['username']+
+        "&"+"link-login="+params['link-login']+
+        "&"+"link-orig="+params['link-orig']+
+        "&"+"error="+params['error']+
+        "&"+"trial="+params['trial']+
+        "&"+"login-by="+params['login-by']+
+        "&"+"chap-id="+params['chap-id']+
+        "&"+"chap-challenge="+params['chap-challenge']+
+        "&"+"link-login-only="+params['link-login-only']+
+        "&"+"link-orig-esc="+params['link-orig-esc']+
+        "&"+"mac-esc="+params['mac-esc']+
+        "&"+"identity="+params['identity']+
+        "&"+"bytes-in-nice="+params['bytes-in-nice']+
+        "&"+"bytes-out-nice="+params['bytes-out-nice']+
+        "&"+"session-time-left="+params['session-time-left']+
+        "&"+"uptime="+params['uptime']+
+        "&"+"refresh-timeout="+params['refresh-timeout']+
+        "&"+"link-status="+params['link-status'];
+        this.mainServ.global.goTo(link, false);
     }
 }

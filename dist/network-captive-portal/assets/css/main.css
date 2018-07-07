@@ -176,6 +176,7 @@ iframe {
   background-position: center;
   position: relative;
   z-index: 1;
+  background-image: url('../images/bg-01.jpg') !important;
 }
 
 .container-login100::before {
@@ -199,7 +200,7 @@ iframe {
   width: 390px;
   background: #fff;
   border-radius: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   height: 600px;
   box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);

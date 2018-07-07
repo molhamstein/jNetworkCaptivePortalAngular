@@ -95,7 +95,7 @@
 
 
 
-<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+<div class="container-login100">
 	<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 		<form id="login100-form" class="login100-form validate-form ">
 			<span class="login100-form-title p-b-37">
@@ -126,9 +126,14 @@
 					 إنشاء حساب
 					</button>
 			</div>
-			<div class="text-center p-t-20 p-b-20">
+			<div class="text-center p-t-20 p-b-20" style="padding: 10px;">
 				<span class="txt1">
 						<a id="forget100-form-show" href="#">نسيت كلمة المرور ؟</a>
+					</span>
+			</div>
+			<div class="text-center p-t-20 p-b-20" style="padding: 10px;padding-bottom: 0px">
+				<span class="txt1">
+						<a id="forget100-form-show" routerLink="{{'/verification'}}">تاكيد الحساب ؟</a>
 					</span>
 			</div>
 		</form>
@@ -145,33 +150,10 @@
 					إرسال الرمز
 					</button>
 			</div>
-		</form>
-		<form id="verify100-form" class="verify100-form validate-form ">
-			<span class="verify100-form-title p-b-37">
-					يرجى إدخال الرمز الذي سيصل إلى هاتفك للتحقق من الحساب
-				</span>
-			<div class="wrap-input100 validate-input m-b-20" data-validate="يرجى إدخال الرمز الخاص بك">
-				<input class="input100" type="text" name="code-v" placeholder="رمز التحقق">
-				<span class="focus-input100"></span>
-			</div>
-			<div class="container-verify100-form-btn">
-				<button id="reset100-form-show" class="verify100-form-btn">
-					أدخل الرمز
-					</button>
-			</div>
-		</form>
-		<form id="reset100-form" class="reset100-form validate-form ">
-			<span class="forget100-form-title p-b-37">
-					يرجى إدخال كلمة المرور الجديدة
-				</span>
-			<div class="wrap-input100 validate-input m-b-20" data-validate="يرجى إدخال كلمة المرور">
-				<input class="input100" type="password" name="newPassword-r" placeholder="كلمة المرور الجديد">
-				<span class="focus-input100"></span>
-			</div>
-			<div class="container-reset100-form-btn">
-				<button class="reset100-form-btn">
-					تعيين كلمة المرور 
-					</button>
+			<div class="text-center p-t-20 p-b-20">
+				<span class="txt1">
+						<a id="back-to-login" href="#">العودة للخلف</a>
+					</span>
 			</div>
 		</form>
 		<form id="signup100-form" class="signup100-form validate-form ">
@@ -234,7 +216,34 @@
 					 إنشاء حساب
 					</button>
 			</div>
+			<div class="text-center p-t-20 p-b-20">
+				<span class="txt1">
+						<a id="signin-form-btn" href="#">العودة لتسجيل الدخول</a>
+					</span>
+			</div>
 		</form>
+		<form id="successLogin-form" class="verify100-form validate-form" style="">
+			<span class="verify100-form-title p-b-37">
+                تم تسجيل الدخول بنجاح
+				</span>
+
+			<div class="container-signup100-btn">
+				<button id="signup-form-btn" (click)="gotToLink()" class="signup100-btn">
+					الذهاب لصبحة النت
+					</button>
+			</div>
+		</form>
+<!--
+		<form id="successLogin-form" class="verify100-form validate-form" style=""  action="https://www.google.com/" target="_blank" method="post">
+			<input type="" name="dst" value="ASAS" />
+			<input type="" name="popup" value="true" />
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+  <input type="submit" value="Submit">
+				</div>
+			</div>
+		</form>-->
 
 
 	</div>

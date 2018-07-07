@@ -117,6 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../dialog/dialog.component */ "./src/app/dialog/dialog.component.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -129,10 +130,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var GlobalService = /** @class */ (function () {
-    function GlobalService(dialog) {
+    function GlobalService(dialog, router) {
         this.dialog = dialog;
+        this.router = router;
+        this.params = {};
     }
+    GlobalService.prototype.setParams = function (params) {
+        this.params = params;
+    };
+    GlobalService.prototype.getParams = function () {
+        return this.params;
+    };
     GlobalService.prototype.sampleDialog = function (title, containt, withRefrech) {
         if (withRefrech === void 0) { withRefrech = false; }
         var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_0__["DialogComponent"], {
@@ -145,6 +155,13 @@ var GlobalService = /** @class */ (function () {
             }
         });
     };
+    GlobalService.prototype.goTo = function (newURL, isLocal) {
+        if (isLocal === void 0) { isLocal = true; }
+        if (isLocal)
+            this.router.navigate([newURL]);
+        else
+            window.location.href = newURL;
+    };
     GlobalService.prototype.somthingError = function (mainMessage) {
         // this.APIServe.setErrorCode(0);
         this.sampleDialog(mainMessage, "هناك مشكلة ما");
@@ -153,7 +170,7 @@ var GlobalService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], GlobalService);
     return GlobalService;
 }());
@@ -310,25 +327,28 @@ var AppComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
-/* harmony import */ var _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reset-password/reset-password.component */ "./src/app/reset-password/reset-password.component.ts");
-/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dialog/dialog.component */ "./src/app/dialog/dialog.component.ts");
-/* harmony import */ var _Services_call_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Services/call-api.service */ "./src/app/Services/call-api.service.ts");
-/* harmony import */ var _Services_log_in_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Services/log-in-service.service */ "./src/app/Services/log-in-service.service.ts");
-/* harmony import */ var _Services_main_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Services/main-service.service */ "./src/app/Services/main-service.service.ts");
-/* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var ngx_mydatepicker__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-mydatepicker */ "./node_modules/ngx-mydatepicker/index.js");
-/* harmony import */ var mydatepicker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! mydatepicker */ "./node_modules/mydatepicker/index.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
-/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _verification_verification_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./verification/verification.component */ "./src/app/verification/verification.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _success_login_success_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./success-login/success-login.component */ "./src/app/success-login/success-login.component.ts");
+/* harmony import */ var _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reset-password/reset-password.component */ "./src/app/reset-password/reset-password.component.ts");
+/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dialog/dialog.component */ "./src/app/dialog/dialog.component.ts");
+/* harmony import */ var _Services_call_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Services/call-api.service */ "./src/app/Services/call-api.service.ts");
+/* harmony import */ var _Services_log_in_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Services/log-in-service.service */ "./src/app/Services/log-in-service.service.ts");
+/* harmony import */ var _Services_main_service_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Services/main-service.service */ "./src/app/Services/main-service.service.ts");
+/* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _app_routes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.routes */ "./src/app/app.routes.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ngx_mydatepicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-mydatepicker */ "./node_modules/ngx-mydatepicker/index.js");
+/* harmony import */ var mydatepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! mydatepicker */ "./node_modules/mydatepicker/index.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -353,24 +373,27 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_7__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_10__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"], _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__["MainPageComponent"], _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_1__["DialogComponent"], _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_0__["ResetPasswordComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"], _verification_verification_component__WEBPACK_IMPORTED_MODULE_0__["VerificationComponent"], _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_8__["MainPageComponent"], _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_4__["DialogComponent"], _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_3__["ResetPasswordComponent"], _success_login_success_login_component__WEBPACK_IMPORTED_MODULE_2__["SuccessLoginComponent"], _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_1__["NotFoundComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], mydatepicker__WEBPACK_IMPORTED_MODULE_13__["MyDatePickerModule"], ngx_mydatepicker__WEBPACK_IMPORTED_MODULE_12__["NgxMyDatePickerModule"].forRoot(),
-                _angular_router__WEBPACK_IMPORTED_MODULE_9__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_8__["routes"], { useHash: true })
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"], mydatepicker__WEBPACK_IMPORTED_MODULE_16__["MyDatePickerModule"], ngx_mydatepicker__WEBPACK_IMPORTED_MODULE_15__["NgxMyDatePickerModule"].forRoot(),
+                _angular_router__WEBPACK_IMPORTED_MODULE_12__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_11__["routes"], { useHash: true })
                 // material
                 ,
-                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_17__["MatDialogModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__["BrowserAnimationsModule"]
+                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MatDialogModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_19__["BrowserAnimationsModule"]
             ],
-            providers: [_Services_main_service_service__WEBPACK_IMPORTED_MODULE_4__["MainServiceService"], _Services_log_in_service_service__WEBPACK_IMPORTED_MODULE_3__["LogInServiceService"], _Services_call_api_service__WEBPACK_IMPORTED_MODULE_2__["CallAPIService"]],
-            entryComponents: [_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_1__["DialogComponent"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
+            providers: [_Services_main_service_service__WEBPACK_IMPORTED_MODULE_7__["MainServiceService"], _Services_log_in_service_service__WEBPACK_IMPORTED_MODULE_6__["LogInServiceService"], _Services_call_api_service__WEBPACK_IMPORTED_MODULE_5__["CallAPIService"]],
+            entryComponents: [_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_4__["DialogComponent"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -390,22 +413,40 @@ var AppModule = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
-/* harmony import */ var _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reset-password/reset-password.component */ "./src/app/reset-password/reset-password.component.ts");
-/* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
+/* harmony import */ var _verification_verification_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./verification/verification.component */ "./src/app/verification/verification.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _success_login_success_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./success-login/success-login.component */ "./src/app/success-login/success-login.component.ts");
+/* harmony import */ var _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reset-password/reset-password.component */ "./src/app/reset-password/reset-password.component.ts");
+/* harmony import */ var _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./main-page/main-page.component */ "./src/app/main-page/main-page.component.ts");
+
+
+
 
 
 var routes = [
     {
-        path: 'reset/:token',
-        component: _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_0__["ResetPasswordComponent"]
+        path: 'reset',
+        component: _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_3__["ResetPasswordComponent"]
+    },
+    // {
+    //     path: 'login/:mac/:ip/:username/:link-login/:link-orig/:error/:trial/:login-by/:chap-challenge/:link-login-only/:link-orig-esc/:mac-esc/:identity/:bytes-in-nice/:bytes-out-nice',
+    //     component: MainPageComponent
+    // },
+    {
+        path: 'login',
+        component: _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_4__["MainPageComponent"]
     },
     {
-        path: 'login/:code/:userId',
-        component: _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_1__["MainPageComponent"]
+        path: 'successLogin',
+        component: _success_login_success_login_component__WEBPACK_IMPORTED_MODULE_2__["SuccessLoginComponent"]
+    },
+    {
+        path: 'verification',
+        component: _verification_verification_component__WEBPACK_IMPORTED_MODULE_0__["VerificationComponent"]
     },
     {
         path: '**',
-        component: _main_page_main_page_component__WEBPACK_IMPORTED_MODULE_1__["MainPageComponent"]
+        component: _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_1__["NotFoundComponent"]
     }
 ];
 
@@ -496,7 +537,7 @@ var DialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form \">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني \">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"loginUser.email\" name=\"phone-l\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"loginUser.password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"forget100-form-show\" href=\"#\">نسيت كلمة المرور ؟</a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"forget100-form\" class=\"forget100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tأدخل البريد الإلكتروني الخاص بك و سيتم إرسال رسالة لاستعادة كلمة المرور\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"phone-f\" [(ngModel)]=\"loginUser.email\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-forget100-form-btn\">\n\t\t\t\t<button id=\"verify100-form-show\" (click)=\"resetPassword()\" class=\"forget100-form-btn\">\n\t\t\t\t\tإرسال الرمز\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"verify100-form\" class=\"verify100-form validate-form \">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال الرمز الذي سيصل إلى هاتفك للتحقق من الحساب\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الرمز الخاص بك\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"code-v\" placeholder=\"رمز التحقق\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-verify100-form-btn\">\n\t\t\t\t<button id=\"reset100-form-show\" class=\"verify100-form-btn\">\n\t\t\t\t\tأدخل الرمز\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\" #dp=\"ngx-mydatepicker\" class=\"input100\"\n\t\t\t\t (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t<option value=\"الإدارة وخدمات الدعم الإداري\">الإدارة وخدمات الدعم الإداري</option>\n\t\t\t\t\t<option value=\"النقل والخدمات اللوجستية\">النقل والخدمات اللوجستية</option>\n\t\t\t\t\t<option value=\"لخدمات الإجتماعية\">الخدمات الإجتماعية</option>\n\t\t\t\t\t<option value=\"الإعلام والإعلان\">الإعلام والإعلان</option>\n\t\t\t\t\t<option value=\"المبيعات والتسويق\">المبيعات والتسويق</option>\n\t\t\t\t\t<option value=\"والتصنيع\">الصناعة والتصنيع</option>\n\t\t\t\t\t<option value=\"الخدمات الطبية والعلوم\">الخدمات الطبية والعلوم</option>\n\t\t\t\t\t<option value=\"الطاقة والنفط والغاز\">الطاقة والنفط والغاز</option>\n\t\t\t\t\t<option value=\"فنادق ومطاعم\">فنادق ومطاعم</option>\n\t\t\t\t\t<option value=\"التشيد والعقارات\">التشيد والعقارات</option>\n\t\t\t\t\t<option value=\"البنوك والصيرفة\">البنوك والصيرفة</option>\n\t\t\t\t\t<option value=\"التكنولوجيا والإتصالات\">التكنولوجيا والإتصالات</option>\n\t\t\t\t\t<option value=\"محاسبة\">محاسبة</option>\n\t\t\t\t\t<option value=\"تعليم\">تعليم</option>\n\t\t\t\t\t<option value=\"الفنون والتصميم\">الفنون والتصميم</option>\n\t\t\t\t\t<option value=\"خدمات قانونية\">خدمات قانونية</option>\n\t\t\t\t\t<option value=\"المهن اليدوية والحرفية\">المهن اليدوية والحرفية</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button type=\"submit\" (click)=\"signUp()\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
+module.exports = "<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form \">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني \">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"loginUser.email\" name=\"phone-l\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"loginUser.password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\" style=\"padding: 10px;\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"forget100-form-show\" href=\"#\">نسيت كلمة المرور ؟</a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\" style=\"padding: 10px;padding-bottom: 0px\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"forget100-form-show\" routerLink=\"{{'/verification'}}\">تاكيد الحساب ؟</a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"forget100-form\" class=\"forget100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tأدخل البريد الإلكتروني الخاص بك و سيتم إرسال رسالة لاستعادة كلمة المرور\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"phone-f\" [(ngModel)]=\"loginUser.email\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-forget100-form-btn\">\n\t\t\t\t<button id=\"verify100-form-show\" (click)=\"resetPassword()\" class=\"forget100-form-btn\">\n\t\t\t\t\tإرسال الرمز\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"back-to-login\" href=\"#\">العودة للخلف</a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\" #dp=\"ngx-mydatepicker\" class=\"input100\"\n\t\t\t\t (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t<option value=\"الإدارة وخدمات الدعم الإداري\">الإدارة وخدمات الدعم الإداري</option>\n\t\t\t\t\t<option value=\"النقل والخدمات اللوجستية\">النقل والخدمات اللوجستية</option>\n\t\t\t\t\t<option value=\"لخدمات الإجتماعية\">الخدمات الإجتماعية</option>\n\t\t\t\t\t<option value=\"الإعلام والإعلان\">الإعلام والإعلان</option>\n\t\t\t\t\t<option value=\"المبيعات والتسويق\">المبيعات والتسويق</option>\n\t\t\t\t\t<option value=\"والتصنيع\">الصناعة والتصنيع</option>\n\t\t\t\t\t<option value=\"الخدمات الطبية والعلوم\">الخدمات الطبية والعلوم</option>\n\t\t\t\t\t<option value=\"الطاقة والنفط والغاز\">الطاقة والنفط والغاز</option>\n\t\t\t\t\t<option value=\"فنادق ومطاعم\">فنادق ومطاعم</option>\n\t\t\t\t\t<option value=\"التشيد والعقارات\">التشيد والعقارات</option>\n\t\t\t\t\t<option value=\"البنوك والصيرفة\">البنوك والصيرفة</option>\n\t\t\t\t\t<option value=\"التكنولوجيا والإتصالات\">التكنولوجيا والإتصالات</option>\n\t\t\t\t\t<option value=\"محاسبة\">محاسبة</option>\n\t\t\t\t\t<option value=\"تعليم\">تعليم</option>\n\t\t\t\t\t<option value=\"الفنون والتصميم\">الفنون والتصميم</option>\n\t\t\t\t\t<option value=\"خدمات قانونية\">خدمات قانونية</option>\n\t\t\t\t\t<option value=\"المهن اليدوية والحرفية\">المهن اليدوية والحرفية</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button type=\"submit\" (click)=\"signUp()\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"signin-form-btn\" href=\"#\">العودة لتسجيل الدخول</a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"successLogin-form\" class=\"verify100-form validate-form\" style=\"\">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n                تم تسجيل الدخول بنجاح\n\t\t\t\t</span>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button id=\"signup-form-btn\" (click)=\"gotToLink()\" class=\"signup100-btn\">\n\t\t\t\t\tالذهاب لصبحة النت\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n<!--\n\t\t<form id=\"successLogin-form\" class=\"verify100-form validate-form\" style=\"\"  action=\"https://www.google.com/\" target=\"_blank\" method=\"post\">\n\t\t\t<input type=\"\" name=\"dst\" value=\"ASAS\" />\n\t\t\t<input type=\"\" name=\"popup\" value=\"true\" />\n\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n  <input type=\"submit\" value=\"Submit\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</form>-->\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
 
 /***/ }),
 
@@ -552,20 +593,14 @@ var MainPageComponent = /** @class */ (function () {
             dateFormat: 'dd.mm.yyyy',
         };
         this.user['birthdate'] = { date: { year: 2018, month: 10, day: 9 } };
-        this.route.params.subscribe(function (params) {
-            var code = params['code'];
-            var userId = params['userId'];
-            if (code) {
-                _this.mainServ.API.get("clients/confirm2?mobile=" + userId + "&code=" + code).subscribe(function (data) {
-                    if (_this.mainServ.API.getErrorCode() == 0) {
-                        _this.mainServ.global.sampleDialog("تاكيد الحساب", "تم تأكيد الحساب بنجاح");
-                        _this.user = {};
-                    }
-                    else {
-                        // if (this.mainServ.API.getErrorCode() == 401) {
-                        _this.mainServ.global.somthingError("تاكيد الحساب");
-                    }
-                });
+        this.route.queryParams
+            .subscribe(function (params) {
+            if (params['mac'] != null) {
+                console.log("Params");
+                _this.mainServ.global.setParams(params);
+            }
+            else {
+                console.log("no Params");
             }
         });
     }
@@ -609,6 +644,9 @@ var MainPageComponent = /** @class */ (function () {
             $('#date').hide();
             $("#signup-form-btn").click(function (evt) {
                 evt.preventDefault();
+                $('#signup100-form').removeClass('animated fadeOutUp');
+                $('#login100-form').removeClass('animated fadeInDown');
+                ;
                 $('#login100-form').addClass('animated fadeOutDown');
                 setTimeout(function () {
                     $('#login100-form').hide();
@@ -618,10 +656,27 @@ var MainPageComponent = /** @class */ (function () {
                 }, 500);
                 $('#birth-s').val('');
             });
+            $("#signin-form-btn").click(function (evt) {
+                evt.preventDefault();
+                $('#signup100-form').removeClass('animated fadeInUp');
+                ;
+                $('#login100-form').removeClass('animated fadeOutDown');
+                $('#signup100-form').addClass('animated fadeOutUp');
+                setTimeout(function () {
+                    $('#signup100-form').hide();
+                    $('#login100-form').show();
+                    $('#login100-form').addClass('animated fadeInDown');
+                    ;
+                }, 500);
+                $('#birth-s').val('');
+            });
             /*==================================================================
             [ Hide Login Form And Show forget Form ]*/
             $("#forget100-form-show").click(function (evt) {
                 evt.preventDefault();
+                $('#forget100-form').removeClass('animated fadeOutRight');
+                $('#login100-form').removeClass('animated fadeInLeft');
+                ;
                 $('#login100-form').addClass('animated fadeOutLeft');
                 setTimeout(function () {
                     $('#login100-form').hide();
@@ -630,18 +685,30 @@ var MainPageComponent = /** @class */ (function () {
                     ;
                 }, 500);
             });
-            /*==================================================================
-            [ Hide Forget Form And Show verify Form ]*/
-            $("#verify100-form-show").click(function (evt) {
+            $("#back-to-login").click(function (evt) {
                 evt.preventDefault();
-                $('#forget100-form').addClass('animated fadeOutLeft');
+                $('#login100-form').removeClass('animated fadeOutLeft');
+                $('#forget100-form').removeClass('animated fadeInRight');
+                ;
+                $('#forget100-form').addClass('animated fadeOutRight');
                 setTimeout(function () {
                     $('#forget100-form').hide();
-                    $('#verify100-form').show();
-                    $('#verify100-form').addClass('animated fadeInRight');
+                    $('#login100-form').show();
+                    $('#login100-form').addClass('animated fadeInLeft');
                     ;
                 }, 500);
             });
+            /*==================================================================
+            [ Hide Forget Form And Show verify Form ]*/
+            // $("#verify100-form-show").click(function (evt) {
+            //     evt.preventDefault();
+            //     $('#forget100-form').addClass('animated fadeOutLeft');
+            //     setTimeout(function () {
+            //         $('#forget100-form').hide();
+            //         $('#verify100-form').show();
+            //         $('#verify100-form').addClass('animated fadeInRight');;
+            //     }, 500);
+            // });
             /*==================================================================
             [ Hide verify Form And Show reset Form ]*/
             $("#reset100-form-show").click(function (evt) {
@@ -849,8 +916,7 @@ var MainPageComponent = /** @class */ (function () {
             }
             this.mainServ.API.post("clients", this.user).subscribe(function (data) {
                 if (_this.mainServ.API.getErrorCode() == 0) {
-                    _this.mainServ.global.sampleDialog("إنشاء الحساب", "تم إنشاء الحساب بنجاح");
-                    _this.user = {};
+                    _this.mainServ.global.goTo('verification/');
                 }
                 else {
                     // if (this.mainServ.API.getErrorCode() == 401) {
@@ -863,8 +929,7 @@ var MainPageComponent = /** @class */ (function () {
         var _this = this;
         this.mainServ.API.post("clients/reset", this.reset).subscribe(function (data) {
             if (_this.mainServ.API.getErrorCode() == 0) {
-                _this.mainServ.global.sampleDialog("تسجيل الدخول", "تم تسجيل الدخول بنجاح");
-                _this.loginUser = {};
+                _this.mainServ.global.goTo("reset/");
             }
             else {
                 // if (this.mainServ.API.getErrorCode() == 401) {
@@ -876,14 +941,44 @@ var MainPageComponent = /** @class */ (function () {
         var _this = this;
         this.mainServ.API.post("clients/login?include=user", this.loginUser).subscribe(function (data) {
             if (_this.mainServ.API.getErrorCode() == 0) {
-                _this.mainServ.global.sampleDialog("تسجيل الدخول", "تم تسجيل الدخول بنجاح");
-                _this.loginUser = {};
+                $('#login100-form').addClass('animated fadeOut');
+                setTimeout(function () {
+                    $('#login100-form').hide();
+                    $('#successLogin-form').show();
+                    $('#successLogin-form').addClass('animated fadeIn');
+                    ;
+                }, 500);
             }
             else {
                 // if (this.mainServ.API.getErrorCode() == 401) {
                 _this.mainServ.global.somthingError("تسجيل الدخول");
             }
         });
+    };
+    MainPageComponent.prototype.gotToLink = function () {
+        var params = this.mainServ.global.getParams();
+        var link = params['link-login-only'];
+        link += "?mac=" + params['mac'] +
+            "&" + "ip=" + params['ip'] +
+            "&" + "username=" + params['username'] +
+            "&" + "link-login=" + params['link-login'] +
+            "&" + "link-orig=" + params['link-orig'] +
+            "&" + "error=" + params['error'] +
+            "&" + "trial=" + params['trial'] +
+            "&" + "login-by=" + params['login-by'] +
+            "&" + "chap-id=" + params['chap-id'] +
+            "&" + "chap-challenge=" + params['chap-challenge'] +
+            "&" + "link-login-only=" + params['link-login-only'] +
+            "&" + "link-orig-esc=" + params['link-orig-esc'] +
+            "&" + "mac-esc=" + params['mac-esc'] +
+            "&" + "identity=" + params['identity'] +
+            "&" + "bytes-in-nice=" + params['bytes-in-nice'] +
+            "&" + "bytes-out-nice=" + params['bytes-out-nice'] +
+            "&" + "session-time-left=" + params['session-time-left'] +
+            "&" + "uptime=" + params['uptime'] +
+            "&" + "refresh-timeout=" + params['refresh-timeout'] +
+            "&" + "link-status=" + params['link-status'];
+        this.mainServ.global.goTo(link, false);
     };
     MainPageComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -900,6 +995,63 @@ var MainPageComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/not-found/not-found.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/not-found/not-found.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--component html goes here -->\n<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n    <div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n        <form id=\"verify100-form\" class=\"verify100-form validate-form\" style=\"display: inherit\">\n            <span class=\"verify100-form-title p-b-37\">\n                404 Not Found !\n\t\t\t\t</span>\n        </form>\n        <!--<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>-->\n\n    </div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
+
+/***/ }),
+
+/***/ "./src/app/not-found/not-found.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/not-found/not-found.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/not-found/not-found.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/not-found/not-found.component.ts ***!
+  \**************************************************/
+/*! exports provided: NotFoundComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotFoundComponent", function() { return NotFoundComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var NotFoundComponent = /** @class */ (function () {
+    function NotFoundComponent() {
+    }
+    NotFoundComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'not-found',
+            template: __webpack_require__(/*! ./not-found.component.html */ "./src/app/not-found/not-found.component.html"),
+            styles: [__webpack_require__(/*! ./not-found.component.scss */ "./src/app/not-found/not-found.component.scss")]
+        })
+    ], NotFoundComponent);
+    return NotFoundComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/reset-password/reset-password.component.html":
 /*!**************************************************************!*\
   !*** ./src/app/reset-password/reset-password.component.html ***!
@@ -907,7 +1059,7 @@ var MainPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--component html goes here -->\n<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"verify100-form\" class=\"verify100-form validate-form\" style=\"display: inherit\">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال الرمز الذي سيصل إلى هاتفك للتحقق من الحساب\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الرمز الخاص بك\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"code-v\"  [(ngModel)]=\"code.code\" placeholder=\"رمز التحقق\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-verify100-form-btn\">\n\t\t\t\t<button id=\"reset100-form-show\" class=\"verify100-form-btn\">\n\t\t\t\t\tأدخل الرمز\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
+module.exports = "<!--component html goes here -->\n<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"verify100-form\" class=\"verify100-form validate-form\" style=\"display: inherit\">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال الرمز الذي سيصل إلى هاتفك ورقم الهاتف للتحقق من الحساب\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الرمز الخاص بك\">\n\t\t\t\t<input id=\"code-input-reset\" class=\"input100\" type=\"text\" name=\"code-v\" [(ngModel)]=\"code.code\" placeholder=\"رمز التحقق\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف الخاص بك\">\n\t\t\t\t<input id=\"mobile-input-reset\" class=\"input100\" type=\"text\" name=\"code-v\" [(ngModel)]=\"code.mobile\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"newPassword\">\n\t\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"container-verify100-form-btn\">\n\t\t\t\t<button id=\"reset100-form-show\" class=\"verify100-form-btn\">\n\t\t\t\t\tتحديث\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<!--<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>-->\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
 
 /***/ }),
 
@@ -918,7 +1070,7 @@ module.exports = "<!--component html goes here -->\n<!--<div class=\"container-l
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".newPassword {\n  display: none; }\n"
 
 /***/ }),
 
@@ -1089,6 +1241,18 @@ var ResetPasswordComponent = /** @class */ (function () {
                 $(thisAlert).removeClass('alert-validate');
                 $(thisAlert).find('.btn-hide-validate').remove();
             }
+            $("#mobile-input-reset , #code-input-reset").on('input', function () {
+                if ($('#mobile-input-reset').val() == "" || $('#mobile-input-reset').val() == null || $('#code-input-reset').val() == "" || $('#code-input-reset').val() == null) {
+                    if ($('.newPassword').is(":hidden") == false) {
+                        $('.newPassword').hide();
+                    }
+                }
+                else {
+                    if ($('.newPassword').is(":hidden") == true) {
+                        $('.newPassword').show();
+                    }
+                }
+            });
         })(jQuery);
         // (function ($) {
         //     "use strict";
@@ -1239,6 +1403,120 @@ var ResetPasswordComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_Services_main_service_service__WEBPACK_IMPORTED_MODULE_0__["MainServiceService"]])
     ], ResetPasswordComponent);
     return ResetPasswordComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/success-login/success-login.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/success-login/success-login.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--component html goes here -->\n<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"verify100-form\" class=\"verify100-form validate-form\" style=\"display: inherit\">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n                تم تسجيل الدخول بنجاح\n\t\t\t\t</span>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\tالذهاب لصبحة النت\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<!--<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>-->\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
+
+/***/ }),
+
+/***/ "./src/app/success-login/success-login.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/success-login/success-login.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/success-login/success-login.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/success-login/success-login.component.ts ***!
+  \**********************************************************/
+/*! exports provided: SuccessLoginComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SuccessLoginComponent", function() { return SuccessLoginComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SuccessLoginComponent = /** @class */ (function () {
+    function SuccessLoginComponent() {
+    }
+    SuccessLoginComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'success-login',
+            template: __webpack_require__(/*! ./success-login.component.html */ "./src/app/success-login/success-login.component.html"),
+            styles: [__webpack_require__(/*! ./success-login.component.scss */ "./src/app/success-login/success-login.component.scss")]
+        })
+    ], SuccessLoginComponent);
+    return SuccessLoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/verification/verification.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/verification/verification.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--component html goes here -->\n<!--component html goes here -->\n<!--<div class=\"container-login100\" style=\"background-image: url('images/bg-01.jpg');\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"login100-form\" class=\"login100-form validate-form\">\n\t\t\t<span class=\"login100-form-title p-b-37\">\n\t\t\t\t\tتسجيل الدخول\n\t\t\t\t</span>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"phone-l\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" [(ngModel)]=\"loginUser.password\" type=\"password\" name=\"pass-l\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-login100-form-btn\">\n\t\t\t\t<button (click)=\"signIn()\" class=\"login100-form-btn\">\n\t\t\t\t\t\tتسجيل الدخول\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t  أو\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button    id=\"signup-form-btn\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t\t<form id=\"signup100-form\" class=\"signup100-form validate-form \">\n\t\t\t<span class=\"signup100-form-title p-b-37\">\n\t\t\t\t\tحساب جديد\n\t\t\t\t</span> \n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الاسم\">\n\t\t\t\t<input class=\"input100\" type=\"text\" [(ngModel)]=\"user.username\" name=\"username-s\" placeholder=\"الاسم\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال البريد الإلكتروني\">\n\t\t\t\t<input class=\"input100\" type=\"email\" [(ngModel)]=\"user.email\" name=\"email-s\" placeholder=\"البريد الإلكتروني\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"يرجى إدخال كلمة السر\">\n\t\t\t\t<input class=\"input100\" type=\"password\" [(ngModel)]=\"user.password\" name=\"pass-s\" placeholder=\"كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-25\" data-validate=\"كلمة المرور غير متطابقة !\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"pass-re-s\" placeholder=\"أعد إدخال كلمة السر\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الموبايل\">\n\t\t\t\t<input class=\"input100\" type=\"text\" name=\"username-s\" [(ngModel)]=\"user.mobile\" placeholder=\"رقم الموبايل\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\"  data-validate=\"يرجى إدخال تاريخ الميلاد\">\n\t\t\t\t<input ngx-mydatepicker name=\"mydate\" [(ngModel)]=\"user.birthdate\" [options]=\"myOptions\"\n\t\t\t #dp=\"ngx-mydatepicker\" class=\"input100\" (click)=\"dp.toggleCalendar()\" type=\"text\" id=\"birth-s\" name=\"birth-s\" placeholder=\"الميلاد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار الجنس\">\n\t\t\t\t<select class=\"form-control select-input100\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.gender\" id=\"sel1\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>الجنس</option>\n\t\t\t\t\t\t<option  value=\"ذكر\">ذكر</option>\n\t\t\t\t\t\t<option value=\"أنثى\">أنثى</option>\n\t\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى اختيار مهنة من القائمة\">\n\t\t\t\t<select class=\"form-control select-input100\" id=\"sel2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"user.profession\">\n\t\t\t\t\t\t<option [ngValue]=\"undefined\" disabled selected>المهنة</option>\n\t\t\t\t\t\t<option value=\"1\">1</option>\n\t\t\t\t\t\t<option value=\"2\">2</option>\n\t\t\t\t\t\t<option value=\"3\">3</option>\n\t\t\t\t\t\t<option value=\"4\">4</option>\n \t\t\t\t\t</select>\n\t\t\t</div>\n\n\t\t\t<div class=\"container-signup100-btn\">\n\t\t\t\t<button (click)=\"signUp()\" type=\"submit\" class=\"signup100-btn\">\n\t\t\t\t\t إنشاء حساب\n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>-->\n\n\n\n<div class=\"container-login100\">\n\t<div class=\"wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30\">\n\t\t<form id=\"verify100-form\" class=\"verify100-form validate-form\" style=\"display: inherit\">\n\t\t\t<span class=\"verify100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال الرمز الذي سيصل إلى هاتفك ورقم الهاتف للتحقق من الحساب\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال الرمز الخاص بك\">\n\t\t\t\t<input id=\"code-input-reset\" class=\"input100\" type=\"text\" name=\"code-v\" [(ngModel)]=\"code.code\" placeholder=\"رمز التحقق\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال رقم الهاتف الخاص بك\">\n\t\t\t\t<input id=\"mobile-input-reset\" class=\"input100\" type=\"text\" name=\"code-v\" [(ngModel)]=\"code.mobile\" placeholder=\"رقم الهاتف\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-verify100-form-btn\">\n\t\t\t\t<button id=\"reset100-form-show\" class=\"verify100-form-btn\">\n\t\t\t\t\tتاكيد\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div class=\"text-center p-t-20 p-b-20\" style=\"padding: 10px;padding-bottom: 0px\">\n\t\t\t\t<span class=\"txt1\">\n\t\t\t\t\t\t<a id=\"forget100-form-show\" routerLink=\"{{'/login'}}\">صفحة تسجيل الدخول </a>\n\t\t\t\t\t</span>\n\t\t\t</div>\n\t\t</form>\n\t\t<!--<form id=\"reset100-form\" class=\"reset100-form validate-form \">\n\t\t\t<span class=\"forget100-form-title p-b-37\">\n\t\t\t\t\tيرجى إدخال كلمة المرور الجديدة\n\t\t\t\t</span>\n\t\t\t<div class=\"wrap-input100 validate-input m-b-20\" data-validate=\"يرجى إدخال كلمة المرور\">\n\t\t\t\t<input class=\"input100\" type=\"password\" name=\"newPassword-r\" [(ngModel)]=\"newPassword.newpasword\" placeholder=\"كلمة المرور الجديد\">\n\t\t\t\t<span class=\"focus-input100\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"container-reset100-form-btn\">\n\t\t\t\t<button class=\"reset100-form-btn\">\n\t\t\t\t\tتعيين كلمة المرور \n\t\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>-->\n\n\t</div>\n</div>\n\n\n\n<div id=\"dropDownSelect1\"></div>"
+
+/***/ }),
+
+/***/ "./src/app/verification/verification.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/verification/verification.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/verification/verification.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/verification/verification.component.ts ***!
+  \********************************************************/
+/*! exports provided: VerificationComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerificationComponent", function() { return VerificationComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var VerificationComponent = /** @class */ (function () {
+    function VerificationComponent() {
+    }
+    VerificationComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'verification',
+            template: __webpack_require__(/*! ./verification.component.html */ "./src/app/verification/verification.component.html"),
+            styles: [__webpack_require__(/*! ./verification.component.scss */ "./src/app/verification/verification.component.scss")]
+        })
+    ], VerificationComponent);
+    return VerificationComponent;
 }());
 
 

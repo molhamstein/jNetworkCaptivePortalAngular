@@ -1,3 +1,6 @@
+import { VerificationComponent } from './verification/verification.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SuccessLoginComponent } from './success-login/success-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { CallAPIService } from './Services/call-api.service';
@@ -24,7 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent, MainPageComponent,DialogComponent,ResetPasswordComponent
+    AppComponent, VerificationComponent,MainPageComponent,DialogComponent,ResetPasswordComponent,SuccessLoginComponent,NotFoundComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, MyDatePickerModule, NgxMyDatePickerModule.forRoot(),
