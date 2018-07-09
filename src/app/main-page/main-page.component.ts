@@ -420,21 +420,49 @@ export class MainPageComponent {
     }
 
     signIn() {
-        this.mainServ.API.post("clients/login?include=user", this.loginUser).subscribe((data: any) => {
-            if (this.mainServ.API.getErrorCode() == 0) {
-                $('#login100-form').addClass('animated fadeOut');
+        // this.mainServ.API.post("clients/login?include=user", this.loginUser).subscribe((data: any) => {
+        //     if (this.mainServ.API.getErrorCode() == 0) {
+        //         $('#login100-form').addClass('animated fadeOut');
 
-                setTimeout(function () {
-                    $('#login100-form').hide();
-                    $('#successLogin-form').show();
-                    $('#successLogin-form').addClass('animated fadeIn');;
-                }, 500);
+        //         setTimeout(function () {
+        //             $('#login100-form').hide();
+        //             $('#successLogin-form').show();
+        //             $('#successLogin-form').addClass('animated fadeIn');;
+        //         }, 500);
 
-            } else {
-                // if (this.mainServ.API.getErrorCode() == 401) {
-                this.mainServ.global.somthingError("تسجيل الدخول");
-            }
-        });
+        //     } else {
+        //         // if (this.mainServ.API.getErrorCode() == 401) {
+        //         this.mainServ.global.somthingError("تسجيل الدخول");
+        //     }
+        // });
+        let params = this.mainServ.global.getParams();
+        let url = params['link-login-only'];
+        url += "?username=" + this.loginUser['email'] +
+            "&" + "password=" + this.loginUser['password'] +
+            "&" + "dst=" + params['link-orig'] +
+            "&" + "popup=" + true;
+        "&mac=" + params['mac'] +
+            "&" + "ip=" + params['ip'] +
+            "&" + "username=" + params['username'] +
+            "&" + "link-login=" + params['link-login'] +
+            "&" + "link-orig=" + params['link-orig'] +
+            "&" + "error=" + params['error'] +
+            "&" + "trial=" + params['trial'] +
+            "&" + "login-by=" + params['login-by'] +
+            "&" + "chap-id=" + params['chap-id'] +
+            "&" + "chap-challenge=" + params['chap-challenge'] +
+            "&" + "link-login-only=" + params['link-login-only'] +
+            "&" + "link-orig-esc=" + params['link-orig-esc'] +
+            "&" + "mac-esc=" + params['mac-esc'] +
+            "&" + "identity=" + params['identity'] +
+            "&" + "bytes-in-nice=" + params['bytes-in-nice'] +
+            "&" + "bytes-out-nice=" + params['bytes-out-nice'] +
+            "&" + "session-time-left=" + params['session-time-left'] +
+            "&" + "uptime=" + params['uptime'] +
+            "&" + "refresh-timeout=" + params['refresh-timeout'] +
+            "&" + "link-status=" + params['link-status'];
+        this.mainServ.global.goTo(url, false)
+
     }
 
     gotToLink() {
